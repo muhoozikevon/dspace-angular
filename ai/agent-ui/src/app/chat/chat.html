@@ -1,0 +1,22 @@
+<div class="p-3">
+  <div class="card-body">
+    <label style="display: block" class="form-label">Ask You Question:</label>
+    <input
+      [(ngModel)]="query"
+      style="width: 70%;"
+      class="form-control m-2" type="text">
+    <button
+      (click)="askAgent()"
+      class="btn btn-outline-primary m-2">Send</button>
+    @if (progress){
+      <div class="spinner-border text-primary" role="status">
+      </div>
+    }
+  </div>
+  <div class="card-body">
+    @if (response){
+      {{response}}
+    }
+  </div>
+</div>
+
