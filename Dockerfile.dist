@@ -25,6 +25,14 @@ ENV NODE_OPTIONS="--max_old_space_size=4096"
 COPY . /app/
 RUN npm run build:prod
 
+# Also build the AI agent UI (if present) and merge its dist into the final dist
+RUN if [ -d "ai/agent-ui" ]; then \
+			npm --prefix ai/agent-ui run build || true; \
+			if [ -d "ai/agent-ui/dist" ]; then \
+				mkdir -p dist/agent-ui && cp -R ai/agent-ui/dist/* dist/agent-ui/ || true; \
+			fi; \
+		fi
+
 # Step 2 - Start up UI via PM2
 FROM docker.io/node:22-alpine
 

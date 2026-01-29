@@ -1,6 +1,9 @@
 {
   "name": "dspace-angular",
   "version": "10.0.0-next",
+  "workspaces": [
+    "ai/agent-ui"
+  ],
   "scripts": {
     "ng": "ng",
     "test:rest": "ts-node -r tsconfig-paths/register --project ./tsconfig.ts-node.json scripts/test-rest.ts",
@@ -45,8 +48,14 @@
     "env:yaml": "ts-node -r tsconfig-paths/register --project ./tsconfig.ts-node.json scripts/env-to-yaml.ts",
     "base-href": "ts-node -r tsconfig-paths/register --project ./tsconfig.ts-node.json scripts/base-href.ts",
     "check-circ-deps": "npx madge --exclude '.nx|(bitstream|bundle|collection|config-submission-form|eperson|item|version)\\.model\\.ts|index.ts$' --circular --extensions ts ./",
-    "postinstall": "npm run build:lint || echo 'Skipped DSpace ESLint plugins.'"
+    "postinstall": "npm run build:lint || echo 'Skipped DSpace ESLint plugins.'",
+    "ai:start": "npm --prefix ai/agent-ui start",
+    "ai:build": "npm --prefix ai/agent-ui run build",
+    "ai:watch": "npm --prefix ai/agent-ui run watch",
+    "ai:test": "npm --prefix ai/agent-ui test"
   },
+
+  "aiScripts": {},
   "browser": {
     "fs": false,
     "path": false,
